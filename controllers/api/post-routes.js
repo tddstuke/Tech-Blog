@@ -16,6 +16,62 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const data = await Post.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ["id", "title", "post_content", "created_at"],
+      include: [
+        {
+          model: Comment,
+          attributes: [
+            "id",
+            "comment_text",
+            "post_id",
+            "user_id",
+            "created_at",
+          ],
+          include: {
+            model: User,
+            attributes: ["username"],
+          },
+        },
+      ],
+    });
+    if (!data) {
+      res.status(404).json({ message: "No post found with this id" });
+    }
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    const data = await Post.update(
+      {
+        title: req.body.title,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    if (!data) {
+      res.status(404).json({ message: "No post found with this id" });
+    }
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const data = await Post.create({
@@ -24,6 +80,23 @@ router.post("/", async (req, res) => {
       user_id: req.body.user_id,
     });
 
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const data = await Post.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!data) {
+      res.status(404).json({ message: "No post found with this id" });
+    }
     res.json(data);
   } catch (err) {
     console.log(err);

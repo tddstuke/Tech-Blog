@@ -51,6 +51,27 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  // expects {username: , email: , password: }
+
+  // if req.body has exact key/value pairs to match the model, you can just use `req.body instead
+  try {
+    const data = await User.update(req.body, {
+      individualHooks: true,
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!data) {
+      res.status(404).json({ message: "No post found with this id" });
+    }
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 router.delete("/:id", async (req, res) => {
   try {
     const data = User.destroy({
