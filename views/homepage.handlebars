@@ -1,1 +1,8 @@
-test
+<ol>
+  {{#each posts as |post|}}
+    <li class="box has-background-grey-light mx-5 is-justify-content-space-between is-flex">
+      <span>{{post.title}}</span>
+      <span>Created by {{post.user.username}} on {{format_date post.created_at}}</spanc>
+    </li>
+  {{/each}}
+</ol>
