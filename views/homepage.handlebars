@@ -1,17 +1,9 @@
 <ol id="post-list">
   {{#each posts as |post|}}
     <li
-      id="{{post.id}}"
       class="box has-background-dark has-text-light mx-5 mb-0 is-justify-content-space-between is-flex"
     >
-      <span>{{post.title}}</span>
-      <span>Created by
-        {{post.user.username}}
-        on
-        {{format_date post.created_at}}</span>
-    </li>
-    <li class="box mx-5 has-background-grey-light">
-      {{post_content}}
+{{> post-info post}}
     </li>
 
   {{/each}}

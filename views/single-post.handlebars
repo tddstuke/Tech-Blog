@@ -1,0 +1,23 @@
+<ol>
+<li class="box has-background-dark has-text-light mx-5 mb-0 is-justify-content-space-between is-flex">
+{{> post-info post}}
+</li>
+</ol>
+
+
+{{#if loggedIn}}
+<div class="box mx-5 mb-0 has-background-dark">
+<form id="comment-form">
+    <div>
+        <textarea class="textarea mb-3" name="comment-body"></textarea>
+    </div>
+    <div>
+        <button class="button has-background-grey-light" type="submit">add comment</button>
+    </div>
+</form>
+</div>
+{{/if}}
+
+{{> comments post.comments}}
+
+<script src="/javascript/comment.js"></script>
