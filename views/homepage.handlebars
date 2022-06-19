@@ -1,10 +1,20 @@
 <ol id="post-list">
   {{#each posts as |post|}}
-    <li id="{{post.id}}" class="box has-background-grey-light mx-5 is-justify-content-space-between is-flex">
+    <li
+      id="{{post.id}}"
+      class="box has-background-dark has-text-light mx-5 mb-0 is-justify-content-space-between is-flex"
+    >
       <span>{{post.title}}</span>
-      <span>Created by {{post.user.username}} on {{format_date post.created_at}}</spanc>
+      <span>Created by
+        {{post.user.username}}
+        on
+        {{format_date post.created_at}}</span>
     </li>
+    <li class="box mx-5 has-background-grey-light">
+      {{post_content}}
+    </li>
+
   {{/each}}
 </ol>
 
-<script src="/homepage.js"></script>
+<script src="/javascript/homepage.js"></script>

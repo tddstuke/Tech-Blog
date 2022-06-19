@@ -11,16 +11,22 @@
     <header class="has-background-dark p-5 mb-5">
       <nav class="block">
         <a class="has-text-light p-2" href="/">Home</a>
-        <a class="has-text-light p-2" href="/dashboard">Dashboard</a>
-        <a class="has-text-light p-2" href="/login">Login</a>
-        <a class="has-text-light p-2" href="/logout">Logout</a>
+        {{#if loggedIn}}
+          <a class="has-text-light p-2" href="/dashboard">Dashboard</a>
+          <a class="has-text-light p-2" id="logout">Logout</button>
+        {{else}}
+          <a class="has-text-light p-2" href="/login">Login</a>
+        {{/if}}
       </nav>
       <h1
         class="p-5 has-background-grey-light block tag is-rounded is-large"
       >The Tech Blog</h1>
     </header>
   </head>
-  <body>
+  <body class="has-background-grey-lighter">
     {{{body}}}
+{{#if loggedIn}}
+    <script src="/javascript/logout.js"></script>
+{{/if}}
   </body>
 </html>
