@@ -1,0 +1,35 @@
+<section>
+  <h2 class="p-5 has-background-grey-light block tag is-rounded is-large mx-5"
+>Create New Post</h2>
+
+<div class="columns">
+  <form id="new-post" class="box m-5 column is-two-thirds has-background-dark">
+    <div class="field">
+      <label class="label has-text-light" for="post-title">Title</label>
+      <input class="input" type="text" name="post-title" id="post-title" />
+    </div>
+    <div class="field">
+      <label class="label has-text-light" for="post-congent">Content</label>
+      <input class="input" name="post-content" id="post-content" />
+    </div>
+    <button type="submit" class="button has-background-grey-light">Create</button>
+  </form>
+</section>
+</div>
+
+{{#if posts.length}}
+<section>
+    <h2 class="p-5 has-background-grey-light block tag is-rounded is-large mx-5">Your Posts</h2>
+    <ol>
+        {{#each posts as |post|}}
+        <li class="box has-background-dark has-text-light mx-5 mb-0 is-justify-content-space-between is-flex">
+
+            {{> post-info post}}
+           <button class="button mx-5 mb-5 has-background-dark"><a class="has-text-light" href="/dashboard/edit/{{post.id}}">Edit post</a></button> 
+        {{/each}}
+        </li>
+    </ol>
+</section>
+{{/if}}
+
+<script src="/javascript/add-post.js"></script>
