@@ -1,0 +1,40 @@
+  <h2 class="p-5 has-background-grey-light block tag is-rounded is-large mx-5">
+    Edit Post
+  </h2>
+<article class="box mx-5 mb-5 has-background-dark">
+  <form id="edit-post" class="edit-post-form">
+    <div>
+      <label for="post-title" class="label has-text-light">Title</label>
+      <input class="input mb-2" type="text" name="post-title" value="{{post.title}}" />
+     
+
+    </div>
+    <div class="has-text-light mb-2">
+     
+      by you on
+      {{format_date post.created_at}}
+      |
+      <a href="/post/{{post.id}}">{{post.comments.length}}
+        {{format_plural "comment" post.comments.length}}</a>
+    </div>
+    <button class="button has-background-grey-light mr-2" type="submit">Save post</buttonxk>
+    <button id="delete-btn" class="button has-background-grey-light" type="button">Delete post</button>
+  </form>
+</article>
+
+<div class="box mx-5 mb-0 has-background-dark">
+<form id="comment-form" class="">
+  <div>
+    <textarea class="textarea mb-3" name="comment-body"></textarea>
+  </div>
+  <div>
+    <button class="button has-background-grey-light" type="submit">add comment</button>
+  </div>
+</form>
+</div>
+{{> comments post.comments}}
+
+
+<script src="/javascript/edit-post.js"></script>
+{{!-- <script src="/javascript/delete-post.js"></script> --}}
+{{!-- <script src="/javascript/comment.js"></script> --}}
