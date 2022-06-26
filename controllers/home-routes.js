@@ -44,6 +44,7 @@ router.get("/single-post/:id", async (req, res) => {
     }
     // serialize data
     const post = data.get({ plain: true });
+
     // pass to template
     res.render("single-post", { post, loggedIn: req.session.loggedIn });
   } catch (err) {

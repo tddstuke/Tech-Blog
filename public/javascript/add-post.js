@@ -4,13 +4,14 @@ async function newFormHandler(event) {
   const post_content = document.querySelector(
     'input[name="post-content"]'
   ).value;
+  // const user_id = req.session.id;
   console.log(title, post_content);
   const response = await fetch(`/api/posts`, {
     method: "POST",
     body: JSON.stringify({
       title,
       post_content,
-      user_id
+      // user_id,
     }),
     headers: {
       "Content-Type": "application/json",
